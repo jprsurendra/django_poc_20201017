@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+#idea's local settings 
+django_poc_20201017/source_code/django_poc/.idea
+django_poc_20201017/source_code/django_poc/.idea/
+django_poc_20201017/source_code/django_poc/.idea/* 
