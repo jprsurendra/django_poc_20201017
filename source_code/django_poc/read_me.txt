@@ -9,9 +9,12 @@ Password: jiffy@123
 
 
 
-
-
-http://localhost:8000/authorsapi/
-or
-http://localhost:8000/bookapi/authors/
+================================
+API
+================================
+1. list of all author
+   ------------------
+   http://localhost:8000/authorsapi/
+    or
+   http://localhost:8000/bookapi/authors/
 

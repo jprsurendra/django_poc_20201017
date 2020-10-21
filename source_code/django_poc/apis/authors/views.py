@@ -8,6 +8,9 @@ class AuthorModelViewSet(viewsets.ModelViewSet):
     queryset = Authors.objects.all()
     serializer_class = AuthorSerializer
 
+'''
+Help Link: https://www.django-rest-framework.org/api-guide/viewsets/
+'''
 class AuthorViewSet(viewsets.ViewSet):
     def list(self, request):
         queryset = Authors.objects.all()
