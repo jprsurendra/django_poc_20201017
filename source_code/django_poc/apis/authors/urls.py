@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'common_operations', AuthorModelViewSet)
 
 urlpatterns = [
-    url(r'^$',AuthorViewSet.as_view({'get': 'list'}), name='author'),
+    url(r'^$', AuthorViewSet.as_view({'get': 'list'}), name='author'),
 ]
 urlpatterns += router.urls
 
