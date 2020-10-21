@@ -1,8 +1,12 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework import permissions, generics
+
 
 from .models import Authors
-from .serializers import AuthorSerializer
+from .serializers import AuthorSerializer, AuthorNameSerializer
+from ..common.views import GenericDataWrapper
+
 
 class AuthorModelViewSet(viewsets.ModelViewSet):
     queryset = Authors.objects.all()
@@ -35,3 +39,30 @@ class AuthorViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         pass
     '''
+
+
+
+
+class AuthorView(GenericDataWrapper, generics.RetrieveUpdateDestroyAPIView):
+    model = Authors
+    queryset = Authors.objects.all()
+    serializer_class = AuthorSerializer
+    # lookup_field = 'pk'
+
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(request, *args, **kwargs)
+
+    # def put(self, request, *args, **kwargs):
+    #     return self.update(request, *args, **kwargs)
+
+    # def patch(self, request, *args, **kwargs):
+    #     return self.partial_update(request, *args, **kwargs)
+    #
+    # def delete(self, request, *args, **kwargs):
+    #     return self.destroy(request, *args, **kwargs)
+
+class AuthorList(generics.ListCreateAPIView):
+    queryset = Authors.objects.all()
+    serializer_class = AuthorNameSerializer
+
+
