@@ -9,7 +9,7 @@ from ..common.views import GenericDataWrapper
 
 
 class AuthorModelViewSet(viewsets.ModelViewSet):
-    queryset = Authors.objects.all()
+    queryset = Authors.objects.all() # SELECT * FROM tbl_authors
     serializer_class = AuthorSerializer
 
 '''
