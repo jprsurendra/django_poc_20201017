@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from web.common_app.custom_views import WebTemplateView
 
 
-class BooksListTemplateView(TemplateView):
+class BooksListTemplateView(WebTemplateView):
     template_name = 'books/book_list.html'
 
     def dispatch(self, *args, **kwargs):
@@ -10,12 +10,15 @@ class BooksListTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BooksListTemplateView, self).get_context_data(**kwargs)
-        # context['data'] = data
+
+        author_name_list_api = self.fetch_api_data(api_url = '/bookapi/author-name-list/')
+        context['author_names'] = author_name_list_api #.get('data').get('results')
+
         return context
 
-    def post(self, request, *args, **kwargs):
-        book_id = request.POST.get('book_id')
-        return redirect('/customer-care/calendar/' + book_id)
+    # def post(self, request, *args, **kwargs):
+    #     book_id = request.POST.get('book_id')
+    #     return redirect('/customer-care/calendar/' + book_id)
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)

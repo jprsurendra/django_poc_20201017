@@ -18,6 +18,9 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^books/', include(('web.books_app.urls', 'books_web_app'), namespace='books_web_app')),
+
     url(r'^authorsapi/', include(('apis.authors.urls', 'authors'), namespace='authors_apis')),
-    url(r'^bookapi/', include(('apis.books.urls', 'books'), namespace='books_apis')),
+    url(r'^bookapi/', include(('apis.books.urls', 'books_app'), namespace='books_apis')),
 ]

@@ -37,11 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # DRF Registration
     'rest_framework',
-    # 'home.apps.HomeConfig',
+
+    # All API-Apps rigistration,
     'apis.common.apps.CommonConfig',
     'apis.authors.apps.AuthorsConfig',
     'apis.books.apps.BooksConfig',
+
+    # All Web-Apps rigistration,
+    'web.common_app.apps.CommonConfig',
+    'web.books_app.apps.BooksConfig',
 ]
 
 MIDDLEWARE = [
