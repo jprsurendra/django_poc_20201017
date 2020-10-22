@@ -10,9 +10,6 @@ urlpatterns = [
     url(r'^$', AuthorViewSet.as_view({'get': 'list'}), name='author'),
     url(r'^author-name-by-id/(?P<pk>\d{0,50})/$', AuthorView.as_view(), name='author-name'),
     url(r'^author-name-list/$', AuthorList.as_view(), name='author-name-list'),
-
 ]
 urlpatterns += router.urls
-
-
 app_name = 'authors'
