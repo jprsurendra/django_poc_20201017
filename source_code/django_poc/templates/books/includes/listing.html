@@ -1,0 +1,41 @@
+<h2 class="mb-10">{{ title }}</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Book Author</th>
+            <th>Book Type</th>
+            <th>Book Theme</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in object_list %}
+        <tr>
+            <td><b>{{ book.name }}</b></td>
+            <td>{{ book.pages }}</td>
+            <td>Option 2</td>
+            <td>Historical</td>
+            <td><a class="mr-5" href="view/{{ book.id }}">View</a>
+                <a class="mr-5" href="edit/{{ book.id }}">Edit</a>
+                <a class="mr-5" href="delete/{{ book.id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span><</span>
+    <span class="active">1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>></span>
+</div>
+
+
+<script type="text/javascript">
+    // js for menu highlight
+    var element = document.getElementById("book-list");
+    element.classList.add("active");
+</script>
