@@ -44,11 +44,54 @@
     }
 
     function close_modal(){
+        $('#first_name').val('');
+        $('#last_name').val('');
+        $('#email').val('');
         $('.modal-window').removeClass('block');
     }
 
     function submit_modal_form(){
-        $('.modal-window').removeClass('block');
-        alert('submit');
+        var author_data = {
+            "first_name":$('#first_name').val(),
+            "last_name":$('#last_name').val(),
+            "email":$('#email').val()
+        };
+
+	    $.ajax({
+            method: 'POST',
+            url: '/authorsapi/common_operations/',
+            //async: false,
+            contentType: "application/json",
+            data : JSON.stringify(author_data),
+            beforeSend:function(xhr, settings) {
+                  function getCookie(name) {
+                          var cookieValue = null;
+                          if (document.cookie && document.cookie != '') {
+                              var cookies = document.cookie.split(';');
+                              for (var i = 0; i < cookies.length; i++) {
+                                  var cookie = jQuery.trim(cookies[i]);
+                                  if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                      break;
+                                  }
+                              }
+                          }
+                          return cookieValue;
+                      }
+                      xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                  },
+            success: function(data){
+                alert("Successfully Save.");
+                close_modal();
+            },
+            error: function(xhr, desc, err){
+               try{
+                  alert(xhr.responseText);
+                  console.log(xhr.responseText, desc, err);
+                }catch(err) {
+                  console.log(xhr.responseText, desc, err);
+                }
+            }
+        });
     }
 </script>
