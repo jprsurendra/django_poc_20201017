@@ -94,7 +94,7 @@ body{
 	margin-right: 15px;
 	vertical-align: top;
 }
-.book-form input[type=button], .upload-file{
+.book-form input[type=button], .upload-file, .button-class{
 	height: 30px;
     padding: 8px 35px;
     border: 1px solid #007;
@@ -217,4 +217,56 @@ body{
 .autocomplete-active {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
+}
+
+/*popup css*/
+.modal-window {
+  display: none;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  /*visibility: hidden;*/
+  /*opacity: 0;*/
+  /*pointer-events: none;*/
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  background: #0000006b;
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: black;
+}
+/*popup css end*/
+.block{
+	display: block;
 }

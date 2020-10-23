@@ -1,7 +1,7 @@
 <div class="side-menu">
     <a id="book-list" href="/generic_views/">Home</a>
     <a id="new-book" href="/generic_views/new/">Add New Book</a>
-    <a href="#">Authors</a>
+    <a href="#" onclick="open_modal();">Authors</a>
     <a href="#">Menu 4</a>
     <a href="#">Menu 5</a>
     <a href="#">Menu 6</a>
@@ -10,3 +10,51 @@
     <a href="#">Menu 9</a>
     <a href="#">Menu 10</a>
 </div>
+
+
+
+<!-- popup -->
+<div id="open-modal" class="modal-window">
+    <div>
+        <a title="Close" class="modal-close" onclick="close_modal()">Close</a>
+        <h1>Authors</h1>
+        
+        <div>
+            <form class="book-form">
+                
+                <div class="form-element">
+                    <label>First Name</label>
+                    <input id="first_name" type="text" name="first_name" placeholder="">
+                </div>
+
+                <div class="form-element">
+                    <label>Last Name</label>
+                    <input id="last_name" type="text" name="last_name" placeholder="">
+                </div>
+
+                <div class="form-element">
+                    <label>Email</label>
+                    <input id="email" type="text" name="email" placeholder="">
+                </div>
+
+                <input type="button" name="" value="Submit" onclick="submit_modal_form()">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function open_modal(){
+        $('.modal-window').addClass('block');
+    }
+
+    function close_modal(){
+        $('.modal-window').removeClass('block');
+    }
+
+    function submit_modal_form(){
+        $('.modal-window').removeClass('block');
+        alert('submit');
+    }
+</script>
