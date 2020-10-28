@@ -1,8 +1,8 @@
 <div class="side-menu">
     <a id="book-list" href="/generic_views/">Home</a>
     <a id="new-book" href="/generic_views/new/">Add New Book</a>
-    <a href="#" onclick="open_modal();">Authors</a>
-    <a href="#">Menu 4</a>
+    <a href="#" onclick="open_author_modal();">Authors</a>
+    <a href="#">Category</a>
     <a href="#">Menu 5</a>
     <a href="#">Menu 6</a>
     <a href="#">Menu 7</a>
@@ -14,9 +14,9 @@
 
 
 <!-- popup -->
-<div id="open-modal" class="modal-window">
+<div id="author-modal" class="modal-window">
     <div>
-        <a title="Close" class="modal-close" onclick="close_modal()">Close</a>
+        <a title="Close" class="modal-close" onclick="close_author_modal()">Close</a>
         <h1>Authors</h1>
         <div>
             <form class="book-form">
@@ -32,25 +32,25 @@
                     <label>Email</label>
                     <input id="email" type="text" name="email" placeholder="">
                 </div>
-                <input type="button" name="" value="Submit" onclick="submit_modal_form()">
+                <input type="button" name="" value="Submit" onclick="submit_author_modal_form()">
             </form>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    function open_modal(){
-        $('.modal-window').addClass('block');
+    function open_author_modal(){
+        $('#author-modal').addClass('block');
     }
 
-    function close_modal(){
+    function close_author_modal(){
         $('#first_name').val('');
         $('#last_name').val('');
         $('#email').val('');
-        $('.modal-window').removeClass('block');
+        $('#author-modal').removeClass('block');
     }
 
-    function submit_modal_form(){
+    function submit_author_modal_form(){
         var author_data = {
             "first_name":$('#first_name').val(),
             "last_name":$('#last_name').val(),
