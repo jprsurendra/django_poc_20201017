@@ -1,23 +1,19 @@
 <!-- Author popup -->
-<div id="author-modal" class="modal-window">
+<div id="publisher-modal" class="modal-window">
     <div>
-        <a title="Close" class="modal-close" onclick="close_author_modal()">Close</a>
-        <h1>Authors</h1>
+        <a title="Close" class="modal-close" onclick="close_publisher_modal()">Close</a>
+        <h1>Publisher</h1>
         <div>
             <form class="book-form">
                 <div class="form-element">
-                    <label>First Name</label>
-                    <input id="first_name" type="text" name="first_name" placeholder="">
+                    <label>Publisher Name</label>
+                    <input id="publisher_name" type="text" name="publisher_name" placeholder="">
                 </div>
                 <div class="form-element">
-                    <label>Last Name</label>
-                    <input id="last_name" type="text" name="last_name" placeholder="">
-                </div>
-                <div class="form-element">
-                    <label>Email</label>
-                    <input id="email" type="text" name="email" placeholder="">
-                </div>
-                <input type="button" name="" value="Submit" onclick="submit_author_modal_form()">
+                    <label>address</label>
+                    <input id="address" type="text" name="address" placeholder="">
+                </div> 
+                <input type="button" name="" value="Submit" onclick="submit_publisher_modal_form()">
             </form>
         </div>
     </div>
@@ -25,28 +21,26 @@
 
 
 <script type="text/javascript">
-    function open_author_modal(){
-        $('#author-modal').addClass('block');
+    function open_publisher_modal(){
+        $('#publisher-modal').addClass('block');
     }
-    function close_author_modal(){
-        $('#first_name').val('');
-        $('#last_name').val('');
-        $('#email').val('');
-        $('#author-modal').removeClass('block');
+    function close_publisher_modal(){
+        $('#publisher_name').val('');
+        $('#address').val('');
+        $('#publisher-modal').removeClass('block');
     }
-    function submit_author_modal_form(){
-        var author_data = {
-            "first_name":$('#first_name').val(),
-            "last_name":$('#last_name').val(),
-            "email":$('#email').val()
+    function submit_publisher_modal_form(){
+        var publisher_data = {
+            "publisher_name":$('#publisher_name').val(),
+            "address":$('#address').val()
         };
 
 	    $.ajax({
             method: 'POST',
-            url: '/authorsapi/common_operations/',
+            url: '/publisherapi/common_operations/',
             //async: false,
             contentType: "application/json",
-            data : JSON.stringify(author_data),
+            data : JSON.stringify(publisher_data),
             beforeSend:function(xhr, settings) {
                   function getCookie(name) {
                           var cookieValue = null;
@@ -66,7 +60,7 @@
                   },
             success: function(data){
                 alert("Successfully Save.");
-                close_author_modal();
+                close_publisher_modal();
             },
             error: function(xhr, desc, err){
                try{
