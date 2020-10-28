@@ -1,12 +1,25 @@
 <div class="side-menu">
     <a id="book-list" href="/">Home</a>
     <a id="new-book" href="/book-new/">Add New Book</a>
-    <a href="#" onclick="open_author_modal();">Authors</a>
-    <a href="#" onclick="open_category_modal();">Category</a>
-    <a href="#" onclick="open_publisher_modal();">Publisher</a>
+    <a id="mnu_author" href="#" onclick="open_author_modal();">Authors</a>
+    <a id="mnu_category" href="#" onclick="open_category_modal();">Category</a>
+    <a id="mnu_publisher" href="#" onclick="open_publisher_modal();">Publisher</a>
 </div>
 
-
+<script type="text/javascript">
+    function menu_item_highlight(mnu_item) {
+        var mnu_items = ["book-list", "new-book", "mnu_author" , "mnu_category", "mnu_publisher"]
+        var element = null;
+        for(var i=0; i<mnu_items.length; i++){
+            element = document.getElementById(mnu_items[i]);
+            if(mnu_items[i] == mnu_item){
+                element.classList.add("active");
+            }else{
+                element.classList.remove("active");
+            }
+        }
+    }
+</script>
 
 <!-- Author popup -->
 {% include "books/includes/author.html" %}
