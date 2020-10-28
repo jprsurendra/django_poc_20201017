@@ -1,0 +1,73 @@
+<!-- Category popup -->
+<div id="category-modal" class="modal-window">
+    <div>
+        <a title="Close" class="modal-close" onclick="close_category_modal()">Close</a>
+        <h1>Category</h1>
+        <div>
+            <form class="book-form">
+                <div class="form-element">
+                    <label>Category Name</label>
+                    <input id="cat_name" type="text" name="cat_name" placeholder="">
+                </div>
+                <input type="button" name="" value="Submit" onclick="submit_category_modal_form()">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function open_category_modal(){
+        $('#category-modal').addClass('block');
+    }
+    function close_category_modal(){
+        $('#first_name').val('');
+        $('#last_name').val('');
+        $('#email').val('');
+        $('#category-modal').removeClass('block');
+    }
+    function submit_category_modal_form(){
+        var category_data = {
+            "first_name":$('#first_name').val(),
+            "last_name":$('#last_name').val(),
+            "email":$('#email').val()
+        };
+
+	    $.ajax({
+            method: 'POST',
+            url: '/categorysapi/common_operations/',
+            //async: false,
+            contentType: "application/json",
+            data : JSON.stringify(category_data),
+            beforeSend:function(xhr, settings) {
+                  function getCookie(name) {
+                          var cookieValue = null;
+                          if (document.cookie && document.cookie != '') {
+                              var cookies = document.cookie.split(';');
+                              for (var i = 0; i < cookies.length; i++) {
+                                  var cookie = jQuery.trim(cookies[i]);
+                                  if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                      break;
+                                  }
+                              }
+                          }
+                          return cookieValue;
+                      }
+                      xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                  },
+            success: function(data){
+                alert("Successfully Save.");
+                close_category_modal();
+            },
+            error: function(xhr, desc, err){
+               try{
+                  alert(xhr.responseText);
+                  console.log(xhr.responseText, desc, err);
+                }catch(err) {
+                  console.log(xhr.responseText, desc, err);
+                }
+            }
+        });
+    }
+</script>
