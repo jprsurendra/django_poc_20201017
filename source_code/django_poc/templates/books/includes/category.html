@@ -21,21 +21,18 @@
         $('#category-modal').addClass('block');
     }
     function close_category_modal(){
-        $('#first_name').val('');
-        $('#last_name').val('');
-        $('#email').val('');
+        $('#cat_name').val('');
         $('#category-modal').removeClass('block');
     }
     function submit_category_modal_form(){
         var category_data = {
-            "first_name":$('#first_name').val(),
-            "last_name":$('#last_name').val(),
-            "email":$('#email').val()
+            "cat_name": $('#cat_name').val()
         };
+        console.log(category_data)
 
 	    $.ajax({
             method: 'POST',
-            url: '/categorysapi/common_operations/',
+            url: '/categoryapi/common_operations/',
             //async: false,
             contentType: "application/json",
             data : JSON.stringify(category_data),
