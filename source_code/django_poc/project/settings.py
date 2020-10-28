@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # All API-Apps rigistration,
     'apis.common.apps.CommonConfig',
     'apis.authors.apps.AuthorsConfig',
+    'apis.category.apps.CategoryConfig',
+    'apis.publisher.apps.PublisherConfig',
     'apis.books.apps.BooksConfig',
 
     # All Web-Apps rigistration,
