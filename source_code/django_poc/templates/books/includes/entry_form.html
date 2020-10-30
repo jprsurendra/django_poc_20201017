@@ -25,8 +25,8 @@
             <label>Book Category</label>
             <select id="book-type">
                 <option>Please Select</option>
-                {% for category in BooksCategories %}
-                    <option value="{{ category.id }}">{{ category.category_name}}</option>
+                {% for category in categories_list %}
+                    <option value="{{ category.id }}">{{ category.cat_name}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -189,8 +189,12 @@
     }
 
     /*An array containing all the country names in the world:*/
-    var publisher = ["Afghanistan","Albania","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Belize","Benin","Bermuda","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia"];
-
+    //var publisher = ["Afghanistan","Albania","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Belize","Benin","Bermuda","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia"];
+    var publisher = [];
+    {% for item in publishers_name_list %}
+    publisher.push("{{ item }}")
+    {% endfor %}
+    console.log(publisher)
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
     autocomplete(document.getElementById("book-auther"), publisher);
 </script>

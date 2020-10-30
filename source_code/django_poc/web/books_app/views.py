@@ -63,6 +63,13 @@ class BookTemplateView(WebTemplateView):
         context = super(BookTemplateView, self).get_context_data(**kwargs)
         try:
             context['authors_list'] = self.call_api(url='/authorsapi/common_operations/')
+            context['categories_list'] = self.call_api(url='/categoryapi/common_operations/')
+            publishers_name_list = []
+            publishers_list = self.call_api(url='/publisherapi/publisher-name-list/')
+            for item in publishers_list:
+                publishers_name_list.append(item['publisher_name'])
+            context['publishers_name_list'] = publishers_name_list
+
             return context
         except Exception as e:
             return context
