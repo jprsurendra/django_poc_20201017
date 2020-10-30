@@ -1,20 +1,20 @@
 <h2>{{ title }}</h2>
-<form class="book-form">
+<form class="book-form" action="/book-new/" method="post">
 
     <div style="width: 65%; float: left;">
         <div class="form-element">
             <label>Book Name</label>
-            <input id="book-name" type="text" name="" placeholder="Book Name">
+            <input id="book-name" type="text" name="book_name" placeholder="Book Name">
         </div>
 
         <div class="form-element autocomplete">
             <label>Publisher</label>
-            <input id="book-auther" type="text" name="" placeholder="Book Author">
+            <input id="book-auther" type="text" name="publisher" placeholder="Book Author">
         </div>
 
         <div class="form-element">
             <label>Authors</label>
-            <select id="book-type" multiple style="height: 150px">
+            <select id="book-type" name="book_authors" multiple style="height: 150px">
                 {% for item in authors_list %}
                     <option value="{{ item.id }}">{{ item.name}}</option>
                 {% endfor %}
@@ -23,7 +23,7 @@
 
         <div class="form-element">
             <label>Book Category</label>
-            <select id="book-type">
+            <select id="book-type" name="book_category">
                 <option>Please Select</option>
                 {% for category in categories_list %}
                     <option value="{{ category.id }}">{{ category.cat_name}}</option>
@@ -33,10 +33,10 @@
 
         <div class="form-element">
             <label>Book available in language</label>
-            <input type="radio" name="book-theme"><span>Hindi</span>
-            <input type="radio" name="book-theme"><span>English</span>
-            <input type="radio" name="book-theme"><span>Other: </span>
-            <input style="width: 200px; display: inline; margin-top: -7px;" id="book-name" type="text" name="" placeholder="Other Language">
+            <input type="radio" name="book_language" value="Hindi"><span>Hindi</span>
+            <input type="radio" name="book_language" value="English"><span>English</span>
+            <input type="radio" name="book_language" value="Other"><span>Other: </span>
+            <input style="width: 200px; display: inline; margin-top: -7px;" id="book-name" type="text" name="book_language_other_value" placeholder="Other Language">
         </div>
 
         <div class="form-element">
@@ -63,7 +63,7 @@
         <textarea placeholder="Description Here" rows="7"></textarea>
     </div>
 
-    <input type="button" name="" value="Submit" onclick="submit_book_detail()">
+    <input type="button" name="" value="Submit" > <!-- onclick="submit_book_detail()"> -->
 
 </form>
 
@@ -192,7 +192,7 @@
     //var publisher = ["Afghanistan","Albania","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Belize","Benin","Bermuda","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia"];
     var publisher = [];
     {% for item in publishers_name_list %}
-    publisher.push("{{ item }}")
+        publisher.push("{{ item }}")
     {% endfor %}
     console.log(publisher)
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/

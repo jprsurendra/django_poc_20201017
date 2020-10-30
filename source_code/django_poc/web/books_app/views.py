@@ -74,6 +74,9 @@ class BookTemplateView(WebTemplateView):
         except Exception as e:
             return context
 
+    def post(self, request, *args, **kwargs):
+        params = request.POST
+        print("params: ", params)
 
     # def post(self, request, *args, **kwargs):
     #     user_id = request.POST.get('user_id')
