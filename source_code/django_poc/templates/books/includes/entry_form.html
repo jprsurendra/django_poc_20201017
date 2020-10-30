@@ -15,8 +15,8 @@
         <div class="form-element">
             <label>Authors</label>
             <select id="book-type" multiple style="height: 150px">
-                {% for category in BooksCategories %}
-                    <option value="{{ category.id }}">{{ category.category_name}}</option>
+                {% for item in authors_list %}
+                    <option value="{{ item.id }}">{{ item.name}}</option>
                 {% endfor %}
             </select>
         </div>
