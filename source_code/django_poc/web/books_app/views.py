@@ -66,9 +66,10 @@ class BookTemplateView(WebTemplateView):
             context['categories_list'] = self.call_api(url='/categoryapi/common_operations/')
             publishers_name_list = []
             publishers_list = self.call_api(url='/publisherapi/publisher-name-list/')
-            for item in publishers_list:
-                publishers_name_list.append(item['publisher_name'])
-            context['publishers_name_list'] = publishers_name_list
+            # for item in publishers_list:
+            #     publishers_name_list.append(item['publisher_name'])
+            # context['publishers_name_list'] = publishers_name_list
+            context['publishers_name_list'] = publishers_list
 
             return context
         except Exception as e:
@@ -80,13 +81,14 @@ class BookTemplateView(WebTemplateView):
         try:
             data = {}
             data['book_name'] = params.get("book_name")
-            data['publisher_id'] = '1' #params.get("publisher")
+            data['publisher_id'] = params.get("publisher_id")
             # data['book_authors'] = params.get("book_authors")
             data['book_category_id'] = params.get("book_category")
             data['book_language'] = params.get("book_language")
             data['book_language_other_value'] = params.get("book_language_other_value")
             data['book_availability'] = params.get("book_availability")
             data['book_description'] = params.get("book_description")
+
 
 
             print("data: ", data)

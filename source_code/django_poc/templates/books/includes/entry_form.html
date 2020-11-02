@@ -9,7 +9,8 @@
 
         <div class="form-element autocomplete">
             <label>Publisher</label>
-            <input id="book-auther" type="text" name="publisher" placeholder="Book Author">
+            <input id="book_publisher_name" type="text"  placeholder="Book Publisher">
+            <input type="hidden"  id="publisher_id" name="publisher_id"  >
         </div>
 
         <div class="form-element">
@@ -70,6 +71,18 @@
 
 <script type="text/javascript">
     function submit_book_detail(){
+        var publisher_id = null;
+        book_publisher_name = document.getElementById('book_publisher_name').value;
+        for (var i = 0, l = publishers_data.length; i < l; i++) {
+            var obj = publishers_data[i];
+            if(obj.name == book_publisher_name){
+                publisher_id = obj.id;
+                break;
+            }
+        }
+        document.getElementById("publisher_id").value = publisher_id;
+
+
 		document.getElementById("book_form").submit();
 	}
 
@@ -195,10 +208,12 @@
     /*An array containing all the country names in the world:*/
     //var publisher = ["Afghanistan","Albania","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Belize","Benin","Bermuda","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia"];
     var publisher = [];
+    var publishers_data = [];
     {% for item in publishers_name_list %}
-        publisher.push("{{ item }}")
+        publisher.push("{{ item.publisher_name }}")
+        publishers_data.push({'id': "{{ item.id }}", 'name': "{{ item.publisher_name }}"})
     {% endfor %}
     console.log(publisher)
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("book-auther"), publisher);
+    autocomplete(document.getElementById("book_publisher_name"), publisher);
 </script>

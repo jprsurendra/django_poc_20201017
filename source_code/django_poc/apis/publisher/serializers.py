@@ -7,4 +7,5 @@ class PublisherSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PublisherNameSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
     publisher_name = serializers.CharField()
