@@ -1,5 +1,5 @@
 <h2>{{ title }}</h2>
-<form class="book-form" action="/book-new/" method="post">
+<form id="book_form" class="book-form" action="/book-new/" method="post">
 
     <div style="width: 65%; float: left;">
         <div class="form-element">
@@ -62,13 +62,17 @@
         <label>Book Description</label>
         <textarea placeholder="Description Here" rows="7"></textarea>
     </div>
-
-    <input type="button" name="" value="Submit" > <!-- onclick="submit_book_detail()"> -->
+    {% csrf_token %}
+    <input type="button" name="" value="Submit"  onclick="submit_book_detail()">
 
 </form>
 
 
 <script type="text/javascript">
+    function submit_book_detail(){
+		document.getElementById("book_form").submit();
+	}
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

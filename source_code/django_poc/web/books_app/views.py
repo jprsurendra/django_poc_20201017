@@ -4,7 +4,7 @@ import requests
 
 from django.shortcuts import redirect
 
-from apis.authors.tasks import demo_task
+# from apis.authors.tasks import demo_task
 from web.common_app.custom_views import WebTemplateView
 
 BASE_URL =  'http://localhost:8000'
@@ -13,17 +13,17 @@ class BooksListTemplateView(WebTemplateView):
     template_name = 'books/book_list.html'
     last_value = 1
 
-    def new_number(self):
-        num = BooksListTemplateView.last_value
-        print("Last Number:", num)
-        res = demo_task.delay(num)
-        print(type(res))
-        # print(f"id={res.id}, state={res.state}, status={res.status} ")
-
-        # print(res.get())
-        # x = random.randint(1,9)
-        # BooksListTemplateView.last_value += x
-        # print("New Number ref: ", x)
+    # def new_number(self):
+    #     num = BooksListTemplateView.last_value
+    #     print("Last Number:", num)
+    #     res = demo_task.delay(num)
+    #     print(type(res))
+    #     # print(f"id={res.id}, state={res.state}, status={res.status} ")
+    #
+    #     # print(res.get())
+    #     # x = random.randint(1,9)
+    #     # BooksListTemplateView.last_value += x
+    #     # print("New Number ref: ", x)
 
 
     def dispatch(self, *args, **kwargs):
@@ -36,7 +36,7 @@ class BooksListTemplateView(WebTemplateView):
         # context['author_names'] = author_name_list_api #.get('data').get('results')
         context['author_names'] = []
 
-        self.new_number()
+        # self.new_number()
 
         return context
 
