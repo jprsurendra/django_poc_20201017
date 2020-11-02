@@ -1,6 +1,6 @@
 <h2>{{ title }}</h2>
 <form id="book_form" class="book-form" action="/book-new/" method="post">
-
+    {% csrf_token %}
     <div style="width: 65%; float: left;">
         <div class="form-element">
             <label>Book Name</label>
@@ -41,10 +41,10 @@
 
         <div class="form-element">
             <label>Book availability</label>
-            <input type="checkbox" name=""><span>Online Reading</span>
-            <input type="checkbox" name=""><span>In Library</span>
-            <input type="checkbox" name=""><span>On Rent</span>
-            <input type="checkbox" name=""><span>For Sell</span>
+            <input type="checkbox" name="book_availability" value="Online Reading" ><span>Online Reading</span>
+            <input type="checkbox" name="book_availability" value="In Library" ><span>In Library</span>
+            <input type="checkbox" name="book_availability" value="On Rent" ><span>On Rent</span>
+            <input type="checkbox" name="book_availability" value="For Sell" ><span>For Sell</span>
         </div>
 
     </div>
@@ -60,9 +60,9 @@
     <div style="clear: both;"></div>
     <div class="form-element">
         <label>Book Description</label>
-        <textarea placeholder="Description Here" rows="7"></textarea>
+        <textarea name="book_description" placeholder="Description Here" rows="7"></textarea>
     </div>
-    {% csrf_token %}
+
     <input type="button" name="" value="Submit"  onclick="submit_book_detail()">
 
 </form>

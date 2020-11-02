@@ -77,6 +77,31 @@ class BookTemplateView(WebTemplateView):
     def post(self, request, *args, **kwargs):
         params = request.POST
         print("params: ", params)
+        try:
+            data = {}
+            data['book_name'] = params.get("book_name")
+            data['publisher_id'] = '1' #params.get("publisher")
+            # data['book_authors'] = params.get("book_authors")
+            data['book_category_id'] = params.get("book_category")
+            data['book_language'] = params.get("book_language")
+            data['book_language_other_value'] = params.get("book_language_other_value")
+            data['book_availability'] = params.get("book_availability")
+            data['book_description'] = params.get("book_description")
+
+
+            print("data: ", data)
+
+            resp = requests.post(BASE_URL + "/bookapi/common_operations/", data=data, cookies=request.COOKIES)
+            print("Res: ", resp.content)
+            data = json.loads(resp.content)
+
+            return redirect(BASE_URL +'/')
+
+        except Exception as e:
+            data['status_code'] = 400
+            data['message'] = str(e)
+            return data
+
 
     # def post(self, request, *args, **kwargs):
     #     user_id = request.POST.get('user_id')
