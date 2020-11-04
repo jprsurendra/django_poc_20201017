@@ -89,10 +89,6 @@ class BookTemplateView(WebTemplateView):
             data['book_availability'] = params.get("book_availability")
             data['book_description'] = params.get("book_description")
 
-
-
-            print("data: ", data)
-
             resp = requests.post(BASE_URL + "/bookapi/common_operations/", data=data, cookies=request.COOKIES)
             print("Res: ", resp.content)
             data = json.loads(resp.content)

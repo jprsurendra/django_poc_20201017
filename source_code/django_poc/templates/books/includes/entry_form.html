@@ -72,7 +72,7 @@
 <script type="text/javascript">
     function submit_book_detail(){
         var publisher_id = null;
-        book_publisher_name = document.getElementById('book_publisher_name').value;
+        var book_publisher_name = document.getElementById('book_publisher_name').value;
         for (var i = 0, l = publishers_data.length; i < l; i++) {
             var obj = publishers_data[i];
             if(obj.name == book_publisher_name){
