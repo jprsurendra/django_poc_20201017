@@ -9,6 +9,13 @@ from web.common_app.custom_views import WebTemplateView
 
 BASE_URL =  'http://localhost:8000'
 
+
+def call_api(request, url):
+    resp = requests.get(BASE_URL + url, request.COOKIES)
+    json_data = json.loads(resp.content)
+    return json_data
+
+
 class BooksListTemplateView(WebTemplateView):
     template_name = 'books/book_list.html'
     last_value = 1
@@ -46,15 +53,11 @@ class BooksListTemplateView(WebTemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
+        context['books_list'] = call_api(self.request, url='/bookapi/common_operations/')
         return self.render_to_response(context)
 
 class BookTemplateView(WebTemplateView):
     template_name = 'books/book_entry.html'
-
-    def call_api(self, url):
-        resp = requests.get(BASE_URL + url, cookies=self.request.COOKIES)
-        json_data = json.loads(resp.content)
-        return json_data
 
     def dispatch(self, *args, **kwargs):
         return super(BookTemplateView, self).dispatch(*args, **kwargs)
@@ -62,10 +65,10 @@ class BookTemplateView(WebTemplateView):
     def get_context_data(self, **kwargs):
         context = super(BookTemplateView, self).get_context_data(**kwargs)
         try:
-            context['authors_list'] = self.call_api(url='/authorsapi/common_operations/')
-            context['categories_list'] = self.call_api(url='/categoryapi/common_operations/')
+            context['authors_list'] = call_api(self.request, url='/authorsapi/common_operations/')
+            context['categories_list'] = call_api(self.request, url='/categoryapi/common_operations/')
             publishers_name_list = []
-            publishers_list = self.call_api(url='/publisherapi/publisher-name-list/')
+            publishers_list = call_api(self.request, url='/publisherapi/publisher-name-list/')
             # for item in publishers_list:
             #     publishers_name_list.append(item['publisher_name'])
             # context['publishers_name_list'] = publishers_name_list

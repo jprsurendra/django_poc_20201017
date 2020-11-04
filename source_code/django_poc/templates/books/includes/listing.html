@@ -4,19 +4,23 @@
     <thead>
         <tr>
             <th>Book Name</th>
-            <th>Book Author</th>
-            <th>Book Type</th>
-            <th>Book Theme</th>
+            <th>Book Language</th>
+            <th>Book Availability</th>
+            <th>Book Description</th>
+            <th>Book Category</th>
+            <th>Book publisher</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for book in object_list %}
+        {% for book in books_list %}
         <tr>
-            <td><b>{{ book.name }}</b></td>
-            <td>{{ book.pages }}</td>
-            <td>Option 2</td>
-            <td>Historical</td>
+            <td><b>{{ book.book_name }}</b></td>
+            <td>{{ book.book_language }}</td>
+            <td>{{ book.book_availability}}</td>
+            <td>{{ book.book_description}}</td>
+            <td>{{ book.book_category.cat_name}}</td>
+            <td>{{ book.publisher.publisher_name}}, {{ book.publisher.address}}</td>
             <td><a class="mr-5" href="view/{{ book.id }}">View</a>
                 <a class="mr-5" href="edit/{{ book.id }}">Edit</a>
                 <a class="mr-5" href="delete/{{ book.id }}">Delete</a></td>
