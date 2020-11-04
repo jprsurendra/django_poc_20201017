@@ -1,9 +1,11 @@
 import random
 import json
 import requests
+from django.http import HttpResponse
 
 from django.shortcuts import redirect
 
+from django.template import RequestContext, loader, Template, Context
 # from apis.authors.tasks import demo_task
 from web.common_app.custom_views import WebTemplateView
 
@@ -107,6 +109,18 @@ class BookTemplateView(WebTemplateView):
     # def post(self, request, *args, **kwargs):
     #     user_id = request.POST.get('user_id')
     #     return redirect('/customer-care/calendar/' + user_id)
+
+
+def edit_book(request, pk=None):
+    template_name = 'books/book_entry.html'
+    if request.method == "GET":
+        context = {}
+        context['authors_list'] = call_api(request, url='/authorsapi/common_operations/')
+        context['categories_list'] = call_api(request, url='/categoryapi/common_operations/')
+        context['publishers_name_list'] = call_api(request, url='/publisherapi/publisher-name-list/')
+        context['book_details'] = call_api(request, url='/bookapi/common_operations/' + str(pk)+'/')
+        template = loader.get_template(template_name)
+        return HttpResponse(template.render(context, request))
 
 
 

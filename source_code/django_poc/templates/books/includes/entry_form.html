@@ -4,12 +4,12 @@
     <div style="width: 65%; float: left;">
         <div class="form-element">
             <label>Book Name</label>
-            <input id="book-name" type="text" name="book_name" placeholder="Book Name">
+            <input id="book-name" type="text" name="book_name" placeholder="Book Name" value="{{ book_details.book_name }}">
         </div>
 
         <div class="form-element autocomplete">
             <label>Publisher</label>
-            <input id="book_publisher_name" type="text"  placeholder="Book Publisher">
+            <input id="book_publisher_name" type="text"  placeholder="Book Publisher" {{ book_details.publisher.publisher_name }}>
             <input type="hidden"  id="publisher_id" name="publisher_id"  >
         </div>
 
@@ -27,7 +27,7 @@
             <select id="book-type" name="book_category">
                 <option>Please Select</option>
                 {% for category in categories_list %}
-                    <option value="{{ category.id }}">{{ category.cat_name}}</option>
+                    <option value="{{ category.id }}" {% if category.id == book_category.id %} selected {% endif %}>{{ category.cat_name}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -61,7 +61,7 @@
     <div style="clear: both;"></div>
     <div class="form-element">
         <label>Book Description</label>
-        <textarea name="book_description" placeholder="Description Here" rows="7"></textarea>
+        <textarea name="book_description" placeholder="Description Here" rows="7">{{ book_details.book_description }}</textarea>
     </div>
 
     <input type="button" name="" value="Submit"  onclick="submit_book_detail()">
