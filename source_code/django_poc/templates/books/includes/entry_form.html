@@ -2,6 +2,7 @@
 <form id="book_form" class="book-form" action="/book-new/" method="post">
     {% csrf_token %}
     <div style="width: 65%; float: left;">
+        <input type="hidden"  id="book_id" name="book_id"  value="{{ book_details.id }}" >
         <div class="form-element">
             <label>Book Name</label>
             <input id="book-name" type="text" name="book_name" placeholder="Book Name" value="{{ book_details.book_name }}">
@@ -64,13 +65,17 @@
         <textarea name="book_description" placeholder="Description Here" rows="7">{{ book_details.book_description }}</textarea>
     </div>
 
-    <input type="button" name="" value="Submit"  onclick="submit_book_detail()">
+    <input type="button" name="" value="Submit"  onclick="submit_book_detail('{{ mode }}')">
 
 </form>
 
 
 <script type="text/javascript">
     function submit_book_detail(){
+        update_publisher_id();
+		document.getElementById("book_form").submit();
+	}
+	function update_publisher_id(){
         var publisher_id = null;
         var book_publisher_name = document.getElementById('book_publisher_name').value;
         for (var i = 0, l = publishers_data.length; i < l; i++) {
@@ -81,10 +86,7 @@
             }
         }
         document.getElementById("publisher_id").value = publisher_id;
-
-
-		document.getElementById("book_form").submit();
-	}
+    }
 
     function readURL(input) {
         if (input.files && input.files[0]) {

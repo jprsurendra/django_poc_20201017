@@ -71,9 +71,6 @@ class BookTemplateView(WebTemplateView):
             context['categories_list'] = call_api(self.request, url='/categoryapi/common_operations/')
             publishers_name_list = []
             publishers_list = call_api(self.request, url='/publisherapi/publisher-name-list/')
-            # for item in publishers_list:
-            #     publishers_name_list.append(item['publisher_name'])
-            # context['publishers_name_list'] = publishers_name_list
             context['publishers_name_list'] = publishers_list
 
             return context
@@ -85,6 +82,9 @@ class BookTemplateView(WebTemplateView):
         print("params: ", params)
         try:
             data = {}
+            book_id = params.get('book_id', None)
+            if book_id:
+                data['id'] = book_id
             data['book_name'] = params.get("book_name")
             data['publisher_id'] = params.get("publisher_id")
             # data['book_authors'] = params.get("book_authors")
@@ -95,7 +95,8 @@ class BookTemplateView(WebTemplateView):
             data['book_description'] = params.get("book_description")
 
             resp = requests.post(BASE_URL + "/bookapi/common_operations/", data=data, cookies=request.COOKIES)
-            print("Res: ", resp.content)
+            print("Res: ", resp)
+            print("Res Content: ", resp.content)
             data = json.loads(resp.content)
 
             return redirect(BASE_URL +'/')
