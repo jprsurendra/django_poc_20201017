@@ -73,7 +73,10 @@
 <script type="text/javascript">
     function submit_book_detail(){
         update_publisher_id();
-		document.getElementById("book_form").submit();
+
+		if (validateForm() == true) {
+            document.getElementById("book_form").submit();
+        }
 	}
 	function update_publisher_id(){
         var publisher_id = null;
@@ -87,6 +90,45 @@
         }
         document.getElementById("publisher_id").value = publisher_id;
     }
+
+    function validateForm() {
+        var frm = document.forms["book_form"];
+
+        if (frm["book_name"].value == "") {
+          alert("Book name can not be blank");
+          return false;
+        }
+        if (frm["book_publisher_name"].value == "") {
+          alert("Publisher name can not be blank");
+          return false;
+        }
+        if (frm["book_authors"].value == "") {
+          alert("Please selct a author");
+          return false;
+        }
+        if (frm["book_category"].value == "") {
+          alert("Please selct book category");
+          return false;
+        }
+        if (frm["book_language"].value == "") {
+          alert("Please choose book language");
+          return false;
+        }
+        else if (frm["book_language"].value == "Other" && frm["book_language_other_value"].value == "") {
+          alert("Language name can not be blank");
+          return false;
+        }
+        var availability = $('input[name="book_availability"]:checked').length;
+        if (availability == 0) {
+          alert("Please select book availability");
+          return false;
+        }
+        if (frm["book_description"].value == "") {
+          alert("Please add a description");
+          return false;
+        }
+        return true;
+  }
 
     function readURL(input) {
         if (input.files && input.files[0]) {

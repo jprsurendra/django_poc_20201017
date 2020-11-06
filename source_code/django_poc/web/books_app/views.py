@@ -84,7 +84,7 @@ class BookTemplateView(WebTemplateView):
             data = {}
             book_id = params.get('book_id', None)
             if book_id:
-                data['id'] = book_id
+                data['book_id'] = book_id
             data['book_name'] = params.get("book_name")
             data['publisher_id'] = params.get("publisher_id")
             # data['book_authors'] = params.get("book_authors")

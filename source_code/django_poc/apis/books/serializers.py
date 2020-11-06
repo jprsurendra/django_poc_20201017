@@ -8,7 +8,8 @@ from apis.publisher.serializers import PublisherSerializer
 
 
 class BookSerializer(serializers.ModelSerializer):
-    # category_info = serializers.SerializerMethodField(read_only=True)
+    book_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
+
     book_category = CategorySerializer(read_only=True)
     book_category_id = serializers.IntegerField(write_only=True)
 
@@ -21,7 +22,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     # Create the Books instance
     def create(self, validated_data):
-        book_id = validated_data.get('id', None)
+        book_id = validated_data.get('book_id', None)
         if book_id:
             instance = Books.objects.get(id=book_id)
             instance.book_name = validated_data['book_name']
